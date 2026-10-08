@@ -1,0 +1,32 @@
+---
+interface Props {
+  location: string;
+  route: string;
+  ping: string;
+  jitter: string;
+  download: string;
+  upload: string;
+  loss: string;
+  status: 'stable' | 'watch';
+  bars: number[];
+}
+const { location, route, ping, jitter, download, upload, loss, status, bars } = Astro.props;
+---
+<article class="metric-card">
+  <div class="metric-top">
+    <div><span class:list={['status-dot', status]}></span><strong>{location}</strong><small>{route}</small></div>
+    <span class="live-label">20:00—23:30</span>
+  </div>
+  <div class="speed-primary">
+    <span>DOWNLOAD</span><strong>{download}</strong><em>Mbps</em>
+  </div>
+  <div class="mini-chart" aria-label="晚高峰速度采样图">
+    {bars.map((height, i) => <i style={`--h:${height}%;--i:${i}`}></i>)}
+  </div>
+  <dl class="metric-details">
+    <div><dt>UPLOAD</dt><dd>{upload}<small> Mbps</small></dd></div>
+    <div><dt>PING</dt><dd>{ping}<small> ms</small></dd></div>
+    <div><dt>JITTER</dt><dd>{jitter}<small> ms</small></dd></div>
+    <div><dt>LOSS</dt><dd>{loss}<small> %</small></dd></div>
+  </dl>
+</article>

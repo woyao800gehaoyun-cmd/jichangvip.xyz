@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+const methods = [
+  ['01', '固定环境', '同一设备、同一接入网络、同一客户端版本，减少环境噪声。'],
+  ['02', '晚高峰窗口', '核心数据采集固定在 20:00—23:30，不拿凌晨峰值充门面。'],
+  ['03', '交叉验证', 'Speedtest、实际下载、MTR 与流媒体播放互相印证。'],
+  ['04', '证据留档', '原始截图保留时间戳，记录入口、落地、协议与测试参数。']
+];
+---
+<Layout title="测试标准｜硬核极客测速站" description="了解本站测速、流媒体解锁与线路分析采用的测试标准。">
+  <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">TESTING PROTOCOL</span><h1>先公开方法，再公布结论。</h1><p>测速不是截一张最好看的图。本站优先保证环境可复现、过程可追溯、结论有边界。</p></div><div class="page-stat"><div><strong>30+</strong><span>SAMPLES / NODE</span></div><div><strong>4 WK</strong><span>MONTHLY CYCLE</span></div></div></div></section>
+  <section class="section"><div class="shell"><span class="section-kicker">METHODOLOGY</span><div class="section-heading"><h2>四条基础测试纪律</h2><p>如果一项测试无法说明时间、环境和复测方法，它就只能是参考，不能成为结论。</p></div><div class="method-grid">{methods.map(item => <article class="method-card"><span>{item[0]}</span><h3>{item[1]}</h3><p>{item[2]}</p></article>)}</div></div></section>
+  <section class="section metrics-section"><div class="shell evidence-grid"><div class="evidence-copy"><span class="section-kicker">DISCLOSURE</span><h2>关于样本、商业合作与风险。</h2><p>站点上线初期的首页跑分用于展示数据界面，已明确标记为样本，不作为购买依据。正式测评只发布有原始记录支撑的结果。</p></div><div class="evidence-list"><div class="evidence-item"><span>A</span><div><strong>不保证永久解锁</strong><small>IP 库和版权策略随时可能变化</small></div></div><div class="evidence-item"><span>B</span><div><strong>不建议超长周期购买</strong><small>任何服务都存在经营和线路风险</small></div></div><div class="evidence-item"><span>C</span><div><strong>合作内容必须标注</strong><small>赞助不影响测试流程和原始结果</small></div></div></div></div></section>
+</Layout>

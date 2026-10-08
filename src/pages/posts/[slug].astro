@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { posts, categoryPath, type Post } from '../../data/posts';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+interface Props { post: Post; }
+const { post } = Astro.props;
+---
+<Layout title={`${post.title}｜硬核极客测速站`} description={post.excerpt}>
+  <article>
+    <header class="article-header"><div class="shell article-header-inner"><div class="eyebrow"><a href={categoryPath[post.category]}>{post.category}</a><code>{post.tag}</code></div><h1>{post.title}</h1><p class="article-deck">{post.excerpt}</p><div class="article-meta"><time datetime={post.date}>{post.dateLabel}</time><span>{post.readTime}</span><span>HARDCORE_LAB</span></div></div></header>
+    <div class="shell article-layout">
+      <aside class="article-aside"><span>ON THIS PAGE</span>{post.content.map((section, index) => <a href={`#section-${index + 1}`}>{String(index + 1).padStart(2, '0')} / {section.heading}</a>)}</aside>
+      <div class="article-content">
+        {post.content.map((section, index) => <section id={`section-${index + 1}`}><h2>{section.heading}</h2>{section.paragraphs.map(p => <p>{p}</p>)}{section.bullets && <ul>{section.bullets.map(item => <li>{item}</li>)}</ul>}</section>)}
+        <div class="article-callout"><strong>DATA BOUNDARY / 数据边界</strong><p>线路、IP 库和客户端版本都在持续变化。请结合文章日期理解结论，并在重要决策前完成自己的复测。</p></div>
+      </div>
+    </div>
+  </article>
+</Layout>

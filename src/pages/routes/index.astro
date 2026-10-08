@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import RouteDiagram from '../../components/RouteDiagram.astro';
+import { posts } from '../../data/posts';
+const list = posts.filter(p => p.category === '线路探秘');
+---
+<Layout title="线路深度探秘｜硬核极客测速站" description="拆解 IPLC、IEPL、BGP 与上游机房路由、延迟和故障域。">
+  <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">NETWORK TOPOLOGY</span><h1>线路深度探秘</h1><p>拆掉营销标签，从 ASN、入口、承载、回程和落地负载判断一条线路的真正上限。</p></div><div class="page-stat"><div><strong>4</strong><span>ROUTE SEGMENTS</span></div><div><strong>3×</strong><span>ISP CROSS-CHECK</span></div></div></div></section>
+  <section class="section route-section"><div class="shell"><span class="section-kicker">PATH MODEL</span><div class="section-heading"><h2>先拆成四段，再讨论快慢。</h2><p>一条线路的任何一段，都可能在特定运营商或特定时段成为瓶颈。</p></div><RouteDiagram /></div></section>
+  <section class="section"><div class="shell"><span class="section-kicker">ROUTE NOTES</span><div class="section-heading"><h2>线路观察档案</h2></div><div class="post-list">{list.map((post, index) => <PostCard post={post} index={index} />)}</div></div></section>
+</Layout>

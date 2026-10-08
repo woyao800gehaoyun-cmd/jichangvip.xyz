@@ -1,0 +1,26 @@
+---
+const path = Astro.url.pathname;
+const links = [
+  { href: '/reviews/', label: '月度红黑榜' },
+  { href: '/guides/', label: '客户端实操' },
+  { href: '/routes/', label: '线路探秘' },
+  { href: '/about/', label: '测试标准' }
+];
+---
+<header class="site-header">
+  <div class="header-inner shell">
+    <a class="brand" href="/" aria-label="硬核极客测速站首页">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span><b>HARDCORE</b><small>极客测速站</small></span>
+    </a>
+    <nav class="main-nav" data-nav aria-label="主导航">
+      {links.map(link => <a class:list={{ active: path.startsWith(link.href) }} href={link.href}>{link.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" data-theme-toggle aria-label="切换明暗主题">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.64 5.64l1.42 1.42m9.88 9.88 1.42 1.42M18.36 5.64l-1.42 1.42M7.06 16.94l-1.42 1.42"/><circle cx="12" cy="12" r="4"/></svg>
+      </button>
+      <button class="menu-button" data-menu-button aria-expanded="false" aria-label="打开菜单"><span></span><span></span></button>
+    </div>
+  </div>
+</header>

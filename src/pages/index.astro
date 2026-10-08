@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MetricCard from '../components/MetricCard.astro';
+import PostCard from '../components/PostCard.astro';
+import RouteDiagram from '../components/RouteDiagram.astro';
+import { posts } from '../data/posts';
+---
+<Layout>
+  <section class="hero">
+    <div class="shell hero-inner">
+      <div>
+        <div class="system-status"><i></i>SYSTEM ONLINE · 20:47 CST</div>
+        <h1>真实测速<span>拒绝云评测</span></h1>
+        <p class="hero-copy">盯住<strong>晚高峰、持续丢包、流媒体解锁和真实路由</strong>。这里没有“理论带宽”，只有可复现的原始数据与线路证据链。</p>
+        <div class="hero-actions"><a class="button primary" href="#latest">查看最新跑分</a><a class="button ghost" href="/about/">测试方法论</a></div>
+        <div class="hero-notes"><span>固定测试环境</span><span>原始截图留档</span><span>拒绝一次测速定输赢</span></div>
+      </div>
+      <div class="terminal" aria-label="本月综合评分面板">
+        <div class="terminal-bar"><div class="terminal-dots"><i></i><i></i><i></i></div><span>peak-test.log</span><span>● REC</span></div>
+        <div class="terminal-body">
+          <div class="terminal-command"><b>root@lab:~$</b> ./benchmark --window peak --repeat 30</div>
+          <div class="gauge-wrap"><div class="gauge"><div class="gauge-value"><strong>8.7</strong><span>STABILITY</span></div></div><div class="terminal-stats"><div><span>P95 LATENCY</span><strong>42.8 ms</strong></div><div><span>AVAILABILITY</span><strong>99.2%</strong></div><div><span>SAMPLES</span><strong>30 × 3</strong></div></div></div>
+          <div class="terminal-log"><span>route: <em>CN-SHA → PRIVATE → JP-TYO</em></span><span>streaming: <em>5 / 6 services passed</em></span><span>verdict: <em>stable under peak load</em></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section metrics-section" id="latest">
+    <div class="shell">
+      <span class="section-kicker">PEAK HOUR BENCHMARK</span>
+      <div class="section-heading"><h2>晚高峰跑分现场</h2><div><p>固定 20:00—23:30，持续采样而非挑选峰值。正式测评将附原图、版本和测试节点。</p><div class="sample-note">当前为站点上线样本数据</div></div></div>
+      <div class="metrics-grid">
+        <MetricCard location="东京 · 01" route="IEPL / JP" ping="38.2" jitter="2.1" download="842.6" upload="114.8" loss="0.0" status="stable" bars={[74,82,78,88,84,92,86,91,83,89,94,88,86,90,92,87,91,89]} />
+        <MetricCard location="香港 · 03" route="BGP / HK" ping="21.6" jitter="4.8" download="516.3" upload="98.4" loss="0.2" status="watch" bars={[60,72,58,81,64,75,52,69,78,62,73,55,68,76,71,59,74,66]} />
+        <MetricCard location="洛杉矶 · 02" route="PREMIUM / US" ping="141" jitter="3.6" download="723.9" upload="86.1" loss="0.0" status="stable" bars={[68,76,72,83,79,86,81,88,78,84,90,85,82,87,88,84,89,86]} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell evidence-grid">
+      <div class="evidence-copy"><span class="section-kicker">EVIDENCE CHAIN</span><h2>一张“全绿”截图，远远不够。</h2><p>通过区域检测只是第一步。我们把流媒体测试拆成区域、目录、播放与账号四层，记录首开速度与持续码率。</p><div class="evidence-list"><div class="evidence-item"><span>01</span><div><strong>环境可复现</strong><small>设备、协议、客户端版本全部记录</small></div></div><div class="evidence-item"><span>02</span><div><strong>结果有时间戳</strong><small>IP 库会变化，不做永久解锁承诺</small></div></div><div class="evidence-item"><span>03</span><div><strong>原始证据留档</strong><small>测速图、MTR 与检测日志相互印证</small></div></div></div></div>
+      <div class="unlock-panel"><div class="panel-head"><span>STREAMING_UNLOCK_REPORT</span><code>REGION: JP</code></div>
+        <div class="unlock-row"><div class="service"><div class="service-icon">NF</div><div><strong>Netflix</strong><small>ORIGINALS + REGION</small></div></div><span class="region">JP / Tokyo</span><span class="unlock-status">PASSED</span></div>
+        <div class="unlock-row"><div class="service"><div class="service-icon">D+</div><div><strong>Disney+</strong><small>CATALOG CHECK</small></div></div><span class="region">JP / Tokyo</span><span class="unlock-status">PASSED</span></div>
+        <div class="unlock-row"><div class="service"><div class="service-icon">YT</div><div><strong>YouTube Premium</strong><small>REGION VERIFY</small></div></div><span class="region">JP / Tokyo</span><span class="unlock-status">PASSED</span></div>
+        <div class="unlock-row"><div class="service"><div class="service-icon">PT</div><div><strong>Prime Video</strong><small>PLAYBACK CHECK</small></div></div><span class="region">JP / Tokyo</span><span class="unlock-status partial">PARTIAL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section route-section">
+    <div class="shell"><span class="section-kicker">ROUTE TOPOLOGY</span><div class="section-heading"><h2>线路标签不重要，数据怎么走才重要。</h2><p>从本地入口、跨境承载到落地出口，逐段分析故障域与晚高峰瓶颈。</p></div><RouteDiagram /><div style="text-align:right"><a class="text-link" href="/routes/">进入线路实验室</a></div></div>
+  </section>
+
+  <section class="section">
+    <div class="shell"><span class="section-kicker">FIELD NOTES</span><div class="section-heading"><h2>最新实验记录</h2><a class="text-link" href="/reviews/">查看全部文章</a></div><div class="post-list">{posts.slice(0, 5).map((post, index) => <PostCard post={post} index={index} />)}</div></div>
+  </section>
+</Layout>

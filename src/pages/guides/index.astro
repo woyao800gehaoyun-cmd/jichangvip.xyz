@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { posts } from '../../data/posts';
+const list = posts.filter(p => p.category === '客户端实操');
+---
+<Layout title="协议与客户端实操｜硬核极客测速站" description="Sing-box、Clash Verge Rev、Loon 的进阶配置与规则分流实操。">
+  <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">CONFIGURATION LAB</span><h1>协议与客户端实操</h1><p>从“能连接”走向“可维护”。覆盖 DNS、规则集、策略组、自动切换与故障排查。</p></div><div class="page-stat"><div><strong>3</strong><span>CORE CLIENTS</span></div><div><strong>0→1</strong><span>REPRODUCIBLE</span></div></div></div></section>
+  <section class="section"><div class="shell"><span class="section-kicker">PRACTICAL GUIDES</span><div class="section-heading"><h2>把每个配置讲明白</h2><p>示例先解释目的，再给配置结构；不堆一份无法维护的千行 YAML。</p></div><div class="post-list">{list.map((post, index) => <PostCard post={post} index={index} />)}</div></div></section>
+</Layout>
