@@ -8,23 +8,18 @@ const links = [
 ];
 ---
 <header class="site-header">
-  <div class="signal-bar"><div class="shell"><span><i></i>独立测试 · 不接受充值排名</span><span>更新于 2026.10.09</span></div></div>
-  <div class="masthead shell">
+  <div class="header-inner shell">
     <a class="brand" href="/" aria-label="硬核极客测速站首页">
-      <span class="brand-box">H</span>
-      <span><b>硬核极客测速站</b><small>HARDCORE NETWORK REVIEW</small></span>
+      <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><b>硬核极客测速站</b><small>独立网络评测媒体</small></span>
     </a>
-    <div class="masthead-note"><strong>真实测速</strong><span>晚高峰 · 全解锁 · 真路由</span></div>
-    <div class="header-actions">
-      <a class="latest-button" href="/#latest">最新测评 <span>↗</span></a>
-      <button class="menu-button" data-menu-button aria-expanded="false" aria-label="打开菜单"><span></span><span></span></button>
-    </div>
-  </div>
-  <div class="nav-wrap">
-    <nav class="main-nav shell" data-nav aria-label="主导航">
+    <nav class="main-nav" data-nav aria-label="主导航">
       <a class:list={{ active: path === '/' }} href="/">首页</a>
       {links.map(link => <a class:list={{ active: path.startsWith(link.href) }} href={link.href}>{link.label}</a>)}
-      <a href="/rss.xml">RSS</a>
     </nav>
+    <div class="header-actions">
+      <a class="latest-button" href="/#latest">阅读最新测评</a>
+      <button class="menu-button" data-menu-button aria-expanded="false" aria-label="打开菜单"><span></span><span></span></button>
+    </div>
   </div>
 </header>

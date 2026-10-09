@@ -3,55 +3,53 @@ import Layout from '../layouts/Layout.astro';
 import PostCard from '../components/PostCard.astro';
 import { posts } from '../data/posts';
 const lead = posts[0];
-const secondary = posts.slice(1, 4);
 const latest = posts.slice(0, 6);
 ---
 <Layout title="硬核极客测速站｜真实机场测速、晚高峰跑分与线路评测" description="硬核极客测速站提供真实机场测速截图、晚高峰跑分、Netflix 等流媒体解锁检测，以及 IPLC、IEPL、BGP 线路深度分析。">
-  <div class="breaking"><div class="shell"><b>正在关注</b><div><span>晚高峰测速应该看 P95 延迟，而不是一次峰值</span><span>IPLC / IEPL / BGP 到底有什么区别？</span><span>Sing-box 规则分流实战</span></div></div></div>
-
-  <section class="lead-section shell">
-    <article class="lead-story">
-      <a class="cover-link" href={`/posts/${lead.slug}/`} aria-label={lead.title}></a>
-      <div class="lead-copy">
-        <div class="category-label">本月头条 · 月度红黑榜</div>
-        <h1>{lead.title}</h1>
-        <p>{lead.excerpt}</p>
-        <div class="story-meta"><time datetime={lead.date}>{lead.dateLabel}</time><span>{lead.readTime} 阅读</span><span>已完成 4 轮复测</span></div>
+  <section class="home-hero">
+    <div class="shell hero-layout">
+      <div class="hero-content">
+        <div class="hero-badge"><span></span>独立测试 · 公开方法 · 持续复测</div>
+        <h1>把每一次测速，<br/><em>变成可靠判断。</em></h1>
+        <p>不拿凌晨峰值制造惊喜。我们关注晚高峰稳定性、持续丢包、流媒体播放和真实路由，为每个结论保留可验证的依据。</p>
+        <div class="hero-actions"><a class="primary-action" href={`/posts/${lead.slug}/`}>阅读本月红黑榜</a><a class="secondary-action" href="/about/">了解测试方法</a></div>
+        <div class="hero-proof"><div><strong>30+</strong><span>单节点采样</span></div><div><strong>4 周</strong><span>月度观察周期</span></div><div><strong>20:00</strong><span>晚高峰开始</span></div></div>
       </div>
-      <div class="cover-art" aria-hidden="true"><span>MONTHLY<br/>REPORT</span><strong>10</strong><div><b>8.7</b><small>综合稳定度</small></div></div>
-    </article>
 
-    <aside class="lead-side" aria-label="热门内容">
-      <div class="side-title"><span>编辑推荐</span><b>TOP STORIES</b></div>
-      {secondary.map((post, index) => <article class="side-story"><a href={`/posts/${post.slug}/`} aria-label={post.title}></a><span>0{index + 1}</span><div><small>{post.category}</small><h2>{post.title}</h2><time datetime={post.date}>{post.dateLabel}</time></div></article>)}
-    </aside>
+      <div class="hero-insight" aria-label="晚高峰测速数据示例">
+        <div class="insight-photo"><span class="insight-photo-label">LAB / NODE 04</span></div>
+        <div class="insight-body">
+          <div class="insight-head"><div><span class="live-dot"></span><b>晚高峰表现快照</b></div><small>东京 · IEPL</small></div>
+          <div class="insight-score"><div><strong>842.6</strong><span>Mbps</span><small>持续下载</small></div><div class="grade"><span>A</span><small>稳定度评级</small></div></div>
+          <div class="smooth-chart" aria-hidden="true"><svg viewBox="0 0 480 150" preserveAspectRatio="none"><path class="area" d="M0 108 C35 90 55 97 86 70 S135 58 166 65 S220 30 255 45 S310 80 340 53 S400 22 480 35 L480 150 L0 150Z"/><path class="line" d="M0 108 C35 90 55 97 86 70 S135 58 166 65 S220 30 255 45 S310 80 340 53 S400 22 480 35"/></svg><span>20:00</span><span>21:00</span><span>22:00</span><span>23:00</span></div>
+          <dl class="insight-metrics"><div><dt>延迟</dt><dd>38.2 ms</dd></div><div><dt>抖动</dt><dd>2.1 ms</dd></div><div><dt>丢包</dt><dd>0.0%</dd></div></dl>
+          <p class="sample-label">界面演示样本 · 正式报告附原始截图与时间戳</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <nav class="topic-nav shell" aria-label="热门主题">
-    <strong>热门主题</strong><a href="/reviews/">月度红黑榜</a><a href="/guides/">Sing-box</a><a href="/guides/">Clash Verge Rev</a><a href="/routes/">IPLC / IEPL</a><a href="/routes/">BGP 路由</a><a href="/posts/streaming-unlock-test-baseline/">流媒体解锁</a>
-  </nav>
+  <section class="trust-strip"><div class="shell"><span>测试原则</span><p>固定环境</p><p>晚高峰采样</p><p>跨运营商复测</p><p>原始证据留档</p><p>结论标注有效期</p></div></section>
+
+  <section class="section start-section">
+    <div class="shell">
+      <div class="section-intro"><span>从哪里开始</span><h2>按你的问题，找到答案</h2><p>不需要先理解所有协议。选择你真正关心的问题，我们把复杂网络数据翻译成清晰判断。</p></div>
+      <div class="start-grid">
+        <a class="start-card ranking" href="/reviews/"><div class="soft-icon"><span></span><span></span><span></span></div><small>稳定性与风险</small><h3>哪些服务值得长期用？</h3><p>查看月度红黑榜，了解晚高峰表现、节点可用率和运营风险。</p><b>查看本月榜单 <span>→</span></b></a>
+        <a class="start-card config" href="/guides/"><div class="soft-icon"><i></i><i></i><i></i></div><small>客户端与分流</small><h3>怎样把配置真正用好？</h3><p>从 DNS 到规则集，掌握 Sing-box、Clash Verge Rev 和 Loon。</p><b>进入实操教程 <span>→</span></b></a>
+        <a class="start-card route" href="/routes/"><div class="soft-icon"><em></em><em></em><em></em></div><small>入口与回程</small><h3>线路标签到底怎么看？</h3><p>拆解 IPLC、IEPL、BGP 和上游机房，找到真实的性能瓶颈。</p><b>浏览线路分析 <span>→</span></b></a>
+      </div>
+    </div>
+  </section>
 
   <section class="section latest-section" id="latest">
     <div class="shell">
-      <div class="editorial-head"><div><span>NEW / 最新发布</span><h2>最新实测与技术文章</h2></div><p>每一篇测评都标注测试环境、时间窗口和结论边界，拒绝用一次测速代表长期体验。</p></div>
-      <div class="magazine-grid">{latest.map((post, index) => <PostCard post={post} index={index} featured={index === 0 || index === 3} />)}</div>
+      <div class="section-intro row"><div><span>最新内容</span><h2>实测、教程与线路观察</h2></div><a href="/reviews/">查看全部文章 →</a></div>
+      <div class="content-grid">{latest.map((post, index) => <PostCard post={post} index={index} featured={index === 0} />)}</div>
     </div>
   </section>
 
-  <section class="score-strip">
-    <div class="shell score-grid">
-      <div class="score-intro"><span>PEAK HOUR SNAPSHOT</span><h2>晚高峰，不只看下载速度</h2><p>固定 20:00—23:30 采样，综合关注延迟、抖动、丢包和持续吞吐。以下为版面演示样本，不作为购买依据。</p><a href="/about/">查看完整测试方法 →</a></div>
-      <div class="score-card acid"><small>东京 IEPL</small><strong>842.6</strong><span>Mbps</span><div><b>38.2 ms</b><em>0% LOSS</em></div></div>
-      <div class="score-card red"><small>香港 BGP</small><strong>516.3</strong><span>Mbps</span><div><b>21.6 ms</b><em>0.2% LOSS</em></div></div>
-      <div class="score-card ink"><small>洛杉矶 Premium</small><strong>723.9</strong><span>Mbps</span><div><b>141 ms</b><em>0% LOSS</em></div></div>
-    </div>
-  </section>
-
-  <section class="section channel-section">
-    <div class="shell channel-grid">
-      <article class="channel-card yellow"><span>01 / MONTHLY</span><h2>月度红黑榜</h2><p>每月初复盘稳定度、跨网表现、服务响应与潜在跑路风险。</p><a href="/reviews/">查看榜单 →</a></article>
-      <article class="channel-card blue"><span>02 / HOW-TO</span><h2>客户端实操</h2><p>Sing-box、Clash Verge Rev 与 Loon 的分流、DNS 和排错教程。</p><a href="/guides/">学习配置 →</a></article>
-      <article class="channel-card coral"><span>03 / ROUTE</span><h2>线路深度探秘</h2><p>拆解 IPLC、IEPL、BGP 与上游机房的入口、承载和回程。</p><a href="/routes/">进入线路库 →</a></article>
-    </div>
+  <section class="feature-band">
+    <div class="shell feature-layout"><div><span>我们的判断标准</span><h2>好线路，不只是“测速快”。</h2><p>峰值速度只占结论的一部分。长期可用性来自稳定的延迟、低丢包、合理负载和清晰的服务响应。</p><a href="/about/">查看完整测试标准 →</a></div><div class="feature-points"><article><strong>01</strong><div><h3>持续稳定</h3><p>观察一段时间，而不是选择一张最好看的截图。</p></div></article><article><strong>02</strong><div><h3>实际可用</h3><p>结合网页、下载、会议和流媒体播放验证体验。</p></div></article><article><strong>03</strong><div><h3>风险透明</h3><p>标注数据边界，不承诺永久解锁或永远稳定。</p></div></article></div></div>
   </section>
 </Layout>

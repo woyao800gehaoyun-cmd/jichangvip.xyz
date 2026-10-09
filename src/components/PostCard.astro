@@ -6,7 +6,8 @@ const { post, index = 0, featured = false } = Astro.props;
 <article class:list={['post-card', { featured }]}>
   <a href={`/posts/${post.slug}/`} class="post-card-link" aria-label={post.title}></a>
   <div class={`post-visual visual-${index % 4}`} aria-hidden="true">
-    <span>{post.category}</span><strong>{post.score ?? String(index + 1).padStart(2, '0')}</strong><small>{post.verdict ?? post.tag.split(' / ')[0]}</small>
+    <span class="visual-orbit"></span><span class="visual-dot"></span>
+    <strong>{post.score ?? String(index + 1).padStart(2, '0')}</strong><small>{post.verdict ?? post.category}</small>
   </div>
   <div class="post-main">
     <div class="eyebrow"><span>{post.category}</span><code>{post.tag}</code></div>
