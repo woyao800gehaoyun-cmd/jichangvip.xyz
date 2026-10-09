@@ -8,15 +8,42 @@ export function getStaticPaths() {
 
 interface Props { post: Post; }
 const { post } = Astro.props;
+const related = posts.filter(item => item.slug !== post.slug && item.category === post.category).slice(0, 2);
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.title,
+  description: post.excerpt,
+  datePublished: post.date,
+  dateModified: post.date,
+  inLanguage: 'zh-CN',
+  mainEntityOfPage: `https://jichangvip.xyz/posts/${post.slug}/`,
+  author: { '@type': 'Organization', name: '硬核极客测速站' },
+  publisher: { '@type': 'Organization', name: '硬核极客测速站', url: 'https://jichangvip.xyz' },
+  articleSection: post.category,
+  keywords: [post.category, post.tag, '真实测速', '晚高峰测速', '线路评测'].join(',')
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '首页', item: 'https://jichangvip.xyz/' },
+    { '@type': 'ListItem', position: 2, name: post.category, item: new URL(categoryPath[post.category], 'https://jichangvip.xyz').href },
+    { '@type': 'ListItem', position: 3, name: post.title }
+  ]
+};
 ---
-<Layout title={`${post.title}｜硬核极客测速站`} description={post.excerpt}>
+<Layout title={`${post.title}｜硬核极客测速站`} description={post.excerpt} type="article" publishedTime={`${post.date}T08:00:00+08:00`}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
   <article>
-    <header class="article-header"><div class="shell article-header-inner"><div class="eyebrow"><a href={categoryPath[post.category]}>{post.category}</a><code>{post.tag}</code></div><h1>{post.title}</h1><p class="article-deck">{post.excerpt}</p><div class="article-meta"><time datetime={post.date}>{post.dateLabel}</time><span>{post.readTime}</span><span>HARDCORE_LAB</span></div></div></header>
+    <header class="article-header"><div class="shell article-header-inner"><nav class="breadcrumbs" aria-label="面包屑"><a href="/">首页</a><span>/</span><a href={categoryPath[post.category]}>{post.category}</a><span>/</span><b>正文</b></nav><div class="eyebrow"><span>{post.category}</span><code>{post.tag}</code></div><h1>{post.title}</h1><p class="article-deck">{post.excerpt}</p><div class="article-meta"><span>作者：硬核实验室</span><time datetime={post.date}>发布于 {post.dateLabel}</time><span>{post.readTime} 阅读</span></div></div></header>
     <div class="shell article-layout">
       <aside class="article-aside"><span>ON THIS PAGE</span>{post.content.map((section, index) => <a href={`#section-${index + 1}`}>{String(index + 1).padStart(2, '0')} / {section.heading}</a>)}</aside>
       <div class="article-content">
         {post.content.map((section, index) => <section id={`section-${index + 1}`}><h2>{section.heading}</h2>{section.paragraphs.map(p => <p>{p}</p>)}{section.bullets && <ul>{section.bullets.map(item => <li>{item}</li>)}</ul>}</section>)}
         <div class="article-callout"><strong>DATA BOUNDARY / 数据边界</strong><p>线路、IP 库和客户端版本都在持续变化。请结合文章日期理解结论，并在重要决策前完成自己的复测。</p></div>
+        {related.length > 0 && <aside class="related-posts"><h2>继续阅读</h2>{related.map(item => <a href={`/posts/${item.slug}/`}><span>{item.category}</span><strong>{item.title}</strong><small>{item.dateLabel} · {item.readTime} 阅读</small></a>)}</aside>}
       </div>
     </div>
   </article>

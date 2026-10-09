@@ -8,19 +8,23 @@ const links = [
 ];
 ---
 <header class="site-header">
-  <div class="header-inner shell">
+  <div class="signal-bar"><div class="shell"><span><i></i>独立测试 · 不接受充值排名</span><span>更新于 2026.10.09</span></div></div>
+  <div class="masthead shell">
     <a class="brand" href="/" aria-label="硬核极客测速站首页">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span><b>HARDCORE</b><small>极客测速站</small></span>
+      <span class="brand-box">H</span>
+      <span><b>硬核极客测速站</b><small>HARDCORE NETWORK REVIEW</small></span>
     </a>
-    <nav class="main-nav" data-nav aria-label="主导航">
-      {links.map(link => <a class:list={{ active: path.startsWith(link.href) }} href={link.href}>{link.label}</a>)}
-    </nav>
+    <div class="masthead-note"><strong>真实测速</strong><span>晚高峰 · 全解锁 · 真路由</span></div>
     <div class="header-actions">
-      <button class="icon-button theme-toggle" data-theme-toggle aria-label="切换明暗主题">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.64 5.64l1.42 1.42m9.88 9.88 1.42 1.42M18.36 5.64l-1.42 1.42M7.06 16.94l-1.42 1.42"/><circle cx="12" cy="12" r="4"/></svg>
-      </button>
+      <a class="latest-button" href="/#latest">最新测评 <span>↗</span></a>
       <button class="menu-button" data-menu-button aria-expanded="false" aria-label="打开菜单"><span></span><span></span></button>
     </div>
+  </div>
+  <div class="nav-wrap">
+    <nav class="main-nav shell" data-nav aria-label="主导航">
+      <a class:list={{ active: path === '/' }} href="/">首页</a>
+      {links.map(link => <a class:list={{ active: path.startsWith(link.href) }} href={link.href}>{link.label}</a>)}
+      <a href="/rss.xml">RSS</a>
+    </nav>
   </div>
 </header>

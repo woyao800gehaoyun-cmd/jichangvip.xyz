@@ -1,16 +1,17 @@
 ---
 import type { Post } from '../data/posts';
-interface Props { post: Post; index?: number; }
-const { post, index = 0 } = Astro.props;
+interface Props { post: Post; index?: number; featured?: boolean; }
+const { post, index = 0, featured = false } = Astro.props;
 ---
-<article class="post-card">
+<article class:list={['post-card', { featured }]}>
   <a href={`/posts/${post.slug}/`} class="post-card-link" aria-label={post.title}></a>
-  <div class="post-index">{String(index + 1).padStart(2, '0')}</div>
+  <div class={`post-visual visual-${index % 4}`} aria-hidden="true">
+    <span>{post.category}</span><strong>{post.score ?? String(index + 1).padStart(2, '0')}</strong><small>{post.verdict ?? post.tag.split(' / ')[0]}</small>
+  </div>
   <div class="post-main">
     <div class="eyebrow"><span>{post.category}</span><code>{post.tag}</code></div>
     <h3>{post.title}</h3>
     <p>{post.excerpt}</p>
-    <div class="post-meta"><time datetime={post.date}>{post.dateLabel}</time><span>{post.readTime}</span></div>
+    <div class="post-meta"><time datetime={post.date}>{post.dateLabel}</time><span>{post.readTime} 阅读</span><span>硬核实验室</span></div>
   </div>
-  <div class="post-arrow" aria-hidden="true">↗</div>
 </article>

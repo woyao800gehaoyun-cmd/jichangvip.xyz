@@ -7,31 +7,54 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
 }
 
 const {
   title = '硬核极客测速站｜真实跑分与线路拆解',
   description = '记录晚高峰真实测速、流媒体解锁、客户端实操与 IPLC / IEPL / BGP 线路深度分析。',
-  image = '/favicon.svg'
+  image = '/favicon.svg',
+  type = 'website',
+  publishedTime
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '硬核极客测速站',
+  alternateName: 'Hardcore Lab',
+  url: 'https://jichangvip.xyz',
+  description: '真实测速、晚高峰跑分、流媒体解锁检测与线路深度拆解。',
+  inLanguage: 'zh-CN'
+};
 ---
 <!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#07110f" />
+    <meta name="theme-color" content="#f4f1e8" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="硬核极客测速站" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="硬核极客测速站 RSS" href="/rss.xml" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <style is:global set:html={globalStyles}></style>
+    <style set:html={globalStyles}></style>
+    {type === 'website' && <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>}
     <script is:inline>
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) document.documentElement.dataset.theme = savedTheme;

@@ -1,0 +1,10 @@
+{
+  "name": "硬核极客测速站",
+  "short_name": "硬核测速",
+  "description": "真实测速、晚高峰跑分、流媒体解锁与线路拆解",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1e8",
+  "theme_color": "#f4f1e8",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
