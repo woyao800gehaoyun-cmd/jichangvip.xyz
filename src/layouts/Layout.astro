@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import globalStyles from '../styles/global.css?raw';
 
 interface Props {
   title?: string;
@@ -31,6 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <style is:global set:html={globalStyles}></style>
     <script is:inline>
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme) document.documentElement.dataset.theme = savedTheme;
