@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const clients = [
+  ['Windows 机场客户端', 'Windows 机场、Clash for Windows 机场、Clash Verge 机场、v2rayN 机场、sing-box 机场', '适合桌面办公、规则分流和多订阅管理。Clash for Windows 已停止维护，下载前确认项目状态。'],
+  ['Mac 机场客户端', 'Mac 机场、机场 Mac 客户端、Clash Verge 机场、Stash 机场、sing-box 机场', '先授予网络扩展或 TUN 权限，再检查 DNS、系统代理与订阅格式。'],
+  ['Android 机场客户端', 'Android 机场、机场安卓客户端、v2rayNG 机场、Clash Meta 机场、sing-box 机场', '适合安卓机场、V2RayN 兼容订阅和按应用分流。'],
+  ['iOS / iPhone 机场客户端', 'iOS 机场、机场 iPhone 客户端、Shadowrocket 机场、Quantumult X 机场、Stash 机场', '小火箭订阅失败时先检查链接编码、账号购买状态与系统时间。']
+];
+---
+<Layout title="机场客户端下载｜Windows、Mac、Android、iOS 客户端指南" description="整理 Windows、Mac、Android、iOS 机场客户端和 Clash、V2RayN、Shadowrocket、Quantumult X、Stash、sing-box 的使用入口。">
+  <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">CLIENT DOWNLOADS</span><h1>客户端，先选对再导入。</h1><p>覆盖 Windows 机场客户端、Mac 机场客户端、安卓客户端和 iPhone 客户端，按设备和订阅格式选择工具。</p></div><div class="page-stat"><div><strong>4</strong><span>设备平台</span></div><div><strong>8+</strong><span>客户端生态</span></div></div></div></section>
+  <section class="section"><div class="shell"><div class="section-intro"><span>PLATFORM MAP</span><h2>机场客户端怎么选</h2><p>软件下载请优先从项目官方仓库或应用商店获取，本站只做平台与配置说明，不托管可执行文件。</p></div><div class="method-grid client-grid">{clients.map((item, index) => <article class="method-card"><span>0{index + 1}</span><h3>{item[0]}</h3><strong>{item[1]}</strong><p>{item[2]}</p></article>)}</div></div></section>
+  <section class="section callout-section"><div class="shell split-copy"><div><span class="section-kicker">NEXT STEP</span><h2>拿到订阅后怎么用？</h2></div><div><p>先阅读订阅链接导入教程，再根据系统进入对应的故障排查文章。</p><a class="text-link" href="/posts/airport-subscription-import-clash-shadowrocket/">阅读订阅导入教程 →</a><a class="text-link" href="/posts/airport-connection-troubleshooting/">查看连接故障排查 →</a></div></div></section>
+</Layout>

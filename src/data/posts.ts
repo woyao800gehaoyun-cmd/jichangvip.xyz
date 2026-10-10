@@ -1,8 +1,10 @@
+import { seoPosts } from './seoPosts';
+
 export type Post = {
   slug: string;
   title: string;
   excerpt: string;
-  category: '红黑榜' | '客户端实操' | '线路探秘';
+  category: '红黑榜' | '客户端实操' | '线路探秘' | '机场推荐' | '机场指南' | '客户端教程' | '故障排查';
   date: string;
   dateLabel: string;
   readTime: string;
@@ -162,8 +164,15 @@ export const posts: Post[] = [
   }
 ];
 
+posts.push(...seoPosts);
+posts.sort((a, b) => b.date.localeCompare(a.date));
+
 export const categoryPath: Record<Post['category'], string> = {
   '红黑榜': '/reviews/',
   '客户端实操': '/guides/',
-  '线路探秘': '/routes/'
+  '线路探秘': '/routes/',
+  '机场推荐': '/recommendations/',
+  '机场指南': '/guides/',
+  '客户端教程': '/guides/',
+  '故障排查': '/guides/'
 };

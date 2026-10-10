@@ -1,10 +1,16 @@
 ---
 const path = Astro.url.pathname;
 const links = [
-  { href: '/reviews/', label: '月度红黑榜' },
-  { href: '/guides/', label: '客户端实操' },
-  { href: '/routes/', label: '线路探秘' },
-  { href: '/about/', label: '测试标准' }
+  { href: '/recommendations/', label: '机场推荐' },
+  { href: '/reviews/', label: '机场评测' },
+  { href: '/guides/', label: '客户端教程' },
+  { href: '/downloads/', label: '客户端下载' },
+  { href: '/ai-tools/', label: 'AI 工具' },
+  { href: '/streaming-tools/', label: '流媒体工具' },
+  { href: '/apple-id/', label: '苹果 ID 指南' },
+  { href: '/free-nodes/', label: '免费节点' },
+  { href: '/about/', label: '关于我们' },
+  { href: '/contact/', label: '联系我们' }
 ];
 ---
 <header class="site-header">
@@ -13,13 +19,13 @@ const links = [
       <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
       <span><b>硬核极客测速站</b><small>独立网络评测媒体</small></span>
     </a>
-    <nav class="main-nav" data-nav aria-label="主导航">
-      <a class:list={{ active: path === '/' }} href="/">首页</a>
-      {links.map(link => <a class:list={{ active: path.startsWith(link.href) }} href={link.href}>{link.label}</a>)}
-    </nav>
     <div class="header-actions">
-      <a class="latest-button" href="/#latest">阅读最新测评</a>
+      <a class="latest-button" href="/recommendations/">查看推荐榜</a>
       <button class="menu-button" data-menu-button aria-expanded="false" aria-label="打开菜单"><span></span><span></span></button>
     </div>
   </div>
+  <nav class="main-nav shell" data-nav aria-label="主导航">
+    <a class:list={{ active: path === '/' }} href="/">首页</a>
+    {links.map(link => <a class:list={{ active: path.startsWith(link.href) }} href={link.href}>{link.label}</a>)}
+  </nav>
 </header>

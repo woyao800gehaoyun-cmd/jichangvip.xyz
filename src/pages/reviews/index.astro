@@ -2,9 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { posts } from '../../data/posts';
-const list = posts.filter(p => p.category === '红黑榜');
+const list = posts.filter(p => ['红黑榜', '机场推荐', '机场指南', '故障排查'].includes(p.category));
 ---
-<Layout title="月度红黑榜｜硬核极客测速站" description="按月复盘节点稳定度、晚高峰表现与潜在跑路风险。">
-  <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">MONTHLY REPORT</span><h1>月度红黑榜</h1><p>不按广告预算排座次。用持续采样、节点可用率、跨网一致性与服务响应，记录一个月后的真实状态。</p></div><div class="page-stat"><div><strong>4×</strong><span>WEEKLY RETEST</span></div><div><strong>P95</strong><span>LATENCY FOCUS</span></div></div></div></section>
-  <section class="section"><div class="shell"><span class="section-kicker">LATEST ISSUES</span><div class="section-heading"><h2>月度观察档案</h2><p>红榜不代表永远稳定，黑榜也不是情绪宣判。每个结论都应接受下一轮复测。</p></div><div class="post-list">{list.map((post, index) => <PostCard post={post} index={index} />)}</div></div></section>
+<Layout title="机场评测与机场排行｜硬核极客测速站" description="提供机场测评、机场排行、机场怎么样、稳定机场与机场避坑等深度文章。">
+  <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">AIRPORT REVIEWS</span><h1>机场评测，不只报一个速度。</h1><p>覆盖机场推荐、机场排行、机场怎么样、晚高峰稳定性、套餐倍率、订阅故障与跑路风险。合作链接与独立评测分开标注。</p></div><div class="page-stat"><div><strong>4×</strong><span>每周复测</span></div><div><strong>P95</strong><span>延迟重点</span></div></div></div></section>
+  <section class="section"><div class="shell"><span class="section-kicker">LATEST ISSUES</span><div class="section-heading"><h2>机场评测与选择档案</h2><p>红榜不代表永远稳定，推荐也不是永久承诺；每个结论都应接受下一轮复测。</p></div><div class="post-list">{list.map((post, index) => <PostCard post={post} index={index} />)}</div></div></section>
 </Layout>

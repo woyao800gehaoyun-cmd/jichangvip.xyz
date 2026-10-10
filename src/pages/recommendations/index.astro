@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { posts } from '../../data/posts';
+import { affiliateLinks } from '../../data/affiliateLinks';
+const list = posts.filter(post => ['机场推荐', '机场指南'].includes(post.category)).slice(0, 8);
+const keywordGroups = [
+  { title: '推荐与目录', href: '/posts/2026-airport-recommendations-by-scenario/', items: ['机场推荐', '机场排行', '机场测评', '机场怎么样', '机场导航', '机场大全', '机场合集', '机场官网', '机场备用网址', '机场入口'] },
+  { title: '网络与场景', href: '/posts/airport-peak-hour-slow-fix/', items: ['机场订阅', '订阅链接', '订阅地址', '机场节点', '节点机场', '节点推荐', '机场加速', '网络加速', '稳定机场', '好用机场', '不掉线机场', '高速机场', '低延迟机场', '游戏机场', '晚高峰不卡机场', '高峰期稳定机场'] },
+  { title: '业务与内容', href: '/posts/native-residential-ip-airport-streaming/', items: ['流媒体机场', '解锁流媒体机场', 'ChatGPT 机场', 'AI 机场', 'OpenAI 机场', '外贸机场', '跨境电商机场', '出海机场', '直播机场', 'TikTok 机场', 'YouTube 机场', '办公机场', '远程办公机场', '学术机场'] },
+  { title: '价格与套餐', href: '/posts/how-to-choose-airport-for-beginners/', items: ['便宜机场', '平价机场', '高性价比机场', '机场月付', '机场季付', '机场年付', '机场优惠', '机场折扣', '机场优惠码', '机场试用', '机场免费试用', '机场体验', '机场套餐', '机场价格', '机场多少钱', '机场流量包', '流量重置包', '流量不够怎么办'] },
+  { title: '线路与协议', href: '/posts/iplc-transit-bgp-direct-airport-guide/', items: ['IPLC 机场', '专线机场', '内网专线机场', '中转机场', 'BGP 机场', '直连机场', '原生 IP 机场', '家宽 IP 机场', '住宅 IP 机场', 'SS 机场', 'SSR 机场', 'V2Ray 机场', 'Trojan 机场', '香港节点机场', '香港 IPLC 机场', '日本原生 IP 机场', '新加坡专线机场', '香港低延迟机场', '日本游戏机场', '美国流媒体机场'] }
+];
+---
+<Layout title="机场推荐与机场排行｜2026 稳定高速机场入口" description="整理机场推荐、机场排行、机场测评、机场导航和机场入口，按晚高峰、流媒体、AI、游戏与办公场景筛选。">
+  <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">AIRPORT DIRECTORY</span><h1>机场推荐，先看长期可用。</h1><p>这里同时整理机场推荐、机场排行、机场测评、机场导航、机场大全与机场合集。合作入口单独标注，本站不承诺永久稳定或永久解锁。</p></div><div class="page-stat"><div><strong>5</strong><span>合作入口</span></div><div><strong>10+</strong><span>使用场景</span></div></div></div></section>
+
+  <section class="section recommendation-section"><div class="shell"><div class="section-intro row"><div><span>合作入口 / PARTNER LINKS</span><h2>按场景查看推荐</h2><p>以下链接包含推广关系。建议先体验，再决定月付、季付或更长周期。</p></div><a href="#directory">查看全部关键词 →</a></div><div class="affiliate-grid">
+    {affiliateLinks.map((item, index) => <article class="affiliate-card"><div class="affiliate-number">0{index + 1}</div><div><span class="affiliate-focus">{item.focus}</span><h3>{item.name}</h3><p>{item.description}</p><div class="affiliate-tags">{item.tags.map(tag => <span>{tag}</span>)}</div><a class="affiliate-button" href={item.href} target="_blank" rel="sponsored nofollow noopener">访问{item.name}入口 <span>↗</span></a></div></article>)}
+  </div><p class="affiliate-note">推广说明：部分入口为合作链接，可能产生推广收益；这不会改变本站公开的测试标准。购买前请核对官方套餐、倍率、设备数、退款政策和备用网址。</p></div></section>
+
+  <section class="section directory-section" id="directory"><div class="shell"><div class="section-intro"><span>SEARCH TOPICS</span><h2>机场关键词导航</h2><p>从推荐、速度、协议、设备、价格到地区节点，按你的问题进入对应文章。</p></div><div class="keyword-groups">{keywordGroups.map(group => <article class="keyword-group"><h3><a href={group.href}>{group.title} →</a></h3><div>{group.items.map(item => <a href={group.href}>{item}</a>)}</div></article>)}</div></div></section>
+
+  <section class="section article-index" id="articles"><div class="shell"><span class="section-kicker">EDITORIAL INDEX</span><div class="section-heading"><h2>先读这些机场专题</h2><p>每篇文章都将关键词放进实际的选择、测试或排障场景。</p></div><div class="content-grid">{list.map((post, index) => <PostCard post={post} index={index} featured={index === 0} />)}</div></div></section>
+</Layout>
