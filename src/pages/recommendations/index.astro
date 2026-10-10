@@ -3,7 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { posts } from '../../data/posts';
 import { affiliateLinks } from '../../data/affiliateLinks';
-const list = posts.filter(post => ['机场推荐', '机场指南'].includes(post.category)).slice(0, 8);
+const list = posts.filter(post => ['机场推荐', '机场评测', '机场指南'].includes(post.category)).slice(0, 8);
+const reviewSlugs: Record<string, string> = {
+  '光年梯机场': 'guangnianti-airport-review',
+  '极连云': 'jilianyun-airport-review',
+  '快狸': 'kuaili-airport-review',
+  '可信云': 'kexinyun-airport-review',
+  '边缘节点': 'edge-node-airport-review'
+};
 const keywordGroups = [
   { title: '推荐与目录', href: '/posts/2026-airport-recommendations-by-scenario/', items: ['机场推荐', '机场排行', '机场测评', '机场怎么样', '机场导航', '机场大全', '机场合集', '机场官网', '机场备用网址', '机场入口'] },
   { title: '网络与场景', href: '/posts/airport-peak-hour-slow-fix/', items: ['机场订阅', '订阅链接', '订阅地址', '机场节点', '节点机场', '节点推荐', '机场加速', '网络加速', '稳定机场', '好用机场', '不掉线机场', '高速机场', '低延迟机场', '游戏机场', '晚高峰不卡机场', '高峰期稳定机场'] },
@@ -16,7 +23,7 @@ const keywordGroups = [
   <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">AIRPORT DIRECTORY</span><h1>机场推荐，先看长期可用。</h1><p>这里同时整理机场推荐、机场排行、机场测评、机场导航、机场大全与机场合集。合作入口单独标注，本站不承诺永久稳定或永久解锁。</p></div><div class="page-stat"><div><strong>5</strong><span>合作入口</span></div><div><strong>10+</strong><span>使用场景</span></div></div></div></section>
 
   <section class="section recommendation-section"><div class="shell"><div class="section-intro row"><div><span>合作入口 / PARTNER LINKS</span><h2>按场景查看推荐</h2><p>以下链接包含推广关系。建议先体验，再决定月付、季付或更长周期。</p></div><a href="#directory">查看全部关键词 →</a></div><div class="affiliate-grid">
-    {affiliateLinks.map((item, index) => <article class="affiliate-card"><div class="affiliate-number">0{index + 1}</div><div><span class="affiliate-focus">{item.focus}</span><h3>{item.name}</h3><p>{item.description}</p><div class="affiliate-tags">{item.tags.map(tag => <span>{tag}</span>)}</div><a class="affiliate-button" href={item.href} target="_blank" rel="sponsored nofollow noopener">访问{item.name}入口 <span>↗</span></a></div></article>)}
+    {affiliateLinks.map((item, index) => <article class="affiliate-card"><div class="affiliate-number">0{index + 1}</div><div><span class="affiliate-focus">{item.focus}</span><h3>{item.name}</h3><p>{item.description}</p><div class="affiliate-tags">{item.tags.map(tag => <span>{tag}</span>)}</div><div class="affiliate-actions"><a class="affiliate-button" href={`/posts/${reviewSlugs[item.name]}/`}>阅读测评 <span>→</span></a><a class="affiliate-button" href={item.href} target="_blank" rel="sponsored nofollow noopener">访问入口 <span>↗</span></a></div></div></article>)}
   </div><p class="affiliate-note">推广说明：部分入口为合作链接，可能产生推广收益；这不会改变本站公开的测试标准。购买前请核对官方套餐、倍率、设备数、退款政策和备用网址。</p></div></section>
 
   <section class="section directory-section" id="directory"><div class="shell"><div class="section-intro"><span>SEARCH TOPICS</span><h2>机场关键词导航</h2><p>从推荐、速度、协议、设备、价格到地区节点，按你的问题进入对应文章。</p></div><div class="keyword-groups">{keywordGroups.map(group => <article class="keyword-group"><h3><a href={group.href}>{group.title} →</a></h3><div>{group.items.map(item => <a href={group.href}>{item}</a>)}</div></article>)}</div></div></section>

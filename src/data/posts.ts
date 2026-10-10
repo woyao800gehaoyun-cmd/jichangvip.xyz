@@ -1,10 +1,11 @@
 import { seoPosts } from './seoPosts';
+import { airportReviews } from './airportReviews';
 
 export type Post = {
   slug: string;
   title: string;
   excerpt: string;
-  category: '红黑榜' | '客户端实操' | '线路探秘' | '机场推荐' | '机场指南' | '客户端教程' | '故障排查';
+  category: '红黑榜' | '客户端实操' | '线路探秘' | '机场推荐' | '机场评测' | '机场指南' | '客户端教程' | '故障排查';
   date: string;
   dateLabel: string;
   readTime: string;
@@ -12,6 +13,8 @@ export type Post = {
   featured?: boolean;
   score?: number;
   verdict?: '推荐' | '观望' | '预警';
+  affiliateName?: string;
+  affiliateHref?: string;
   content: { heading: string; paragraphs: string[]; bullets?: string[] }[];
 };
 
@@ -165,6 +168,7 @@ export const posts: Post[] = [
 ];
 
 posts.push(...seoPosts);
+posts.push(...airportReviews);
 posts.sort((a, b) => b.date.localeCompare(a.date));
 
 export const categoryPath: Record<Post['category'], string> = {
@@ -172,6 +176,7 @@ export const categoryPath: Record<Post['category'], string> = {
   '客户端实操': '/guides/',
   '线路探秘': '/routes/',
   '机场推荐': '/recommendations/',
+  '机场评测': '/reviews/',
   '机场指南': '/guides/',
   '客户端教程': '/guides/',
   '故障排查': '/guides/'

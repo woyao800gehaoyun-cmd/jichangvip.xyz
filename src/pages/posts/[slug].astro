@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { posts, categoryPath, type Post } from '../../data/posts';
+import { affiliateLinks } from '../../data/affiliateLinks';
 
 export function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
@@ -9,6 +10,7 @@ export function getStaticPaths() {
 interface Props { post: Post; }
 const { post } = Astro.props;
 const related = posts.filter(item => item.slug !== post.slug && item.category === post.category).slice(0, 2);
+const affiliate = post.affiliateName ? affiliateLinks.find(item => item.name === post.affiliateName) : null;
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -43,6 +45,7 @@ const breadcrumbSchema = {
       <div class="article-content">
         {post.content.map((section, index) => <section id={`section-${index + 1}`}><h2>{section.heading}</h2>{section.paragraphs.map(p => <p>{p}</p>)}{section.bullets && <ul>{section.bullets.map(item => <li>{item}</li>)}</ul>}</section>)}
         <div class="article-callout"><strong>DATA BOUNDARY / 数据边界</strong><p>线路、IP 库和客户端版本都在持续变化。请结合文章日期理解结论，并在重要决策前完成自己的复测。</p></div>
+        {affiliate && <div class="article-affiliate"><span class="section-kicker">PARTNER ENTRY / 合作入口</span><h2>{affiliate.name}</h2><p>本文包含合作关系。请先阅读测评，再自行核对实时套餐、倍率、设备数和退款政策。</p><a class="primary-action" href={affiliate.href} target="_blank" rel="sponsored nofollow noopener">访问{affiliate.name}入口 ↗</a></div>}
         {related.length > 0 && <aside class="related-posts"><h2>继续阅读</h2>{related.map(item => <a href={`/posts/${item.slug}/`}><span>{item.category}</span><strong>{item.title}</strong><small>{item.dateLabel} · {item.readTime} 阅读</small></a>)}</aside>}
       </div>
     </div>

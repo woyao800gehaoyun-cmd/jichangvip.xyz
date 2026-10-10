@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { posts } from '../../data/posts';
-const list = posts.filter(p => ['红黑榜', '机场推荐', '机场指南', '故障排查'].includes(p.category));
+const list = posts.filter(p => ['红黑榜', '机场推荐', '机场评测', '机场指南', '故障排查'].includes(p.category));
 ---
 <Layout title="机场评测与机场排行｜硬核极客测速站" description="提供机场测评、机场排行、机场怎么样、稳定机场与机场避坑等深度文章。">
   <section class="page-hero"><div class="shell page-hero-grid"><div><span class="section-kicker">AIRPORT REVIEWS</span><h1>机场评测，不只报一个速度。</h1><p>覆盖机场推荐、机场排行、机场怎么样、晚高峰稳定性、套餐倍率、订阅故障与跑路风险。合作链接与独立评测分开标注。</p></div><div class="page-stat"><div><strong>4×</strong><span>每周复测</span></div><div><strong>P95</strong><span>延迟重点</span></div></div></div></section>
