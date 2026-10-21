@@ -1,5 +1,6 @@
 import { seoPosts } from './seoPosts';
 import { airportReviews } from './airportReviews';
+import { contentExpansion } from './contentExpansion';
 
 export type Post = {
   slug: string;
@@ -169,6 +170,7 @@ export const posts: Post[] = [
 
 posts.push(...seoPosts);
 posts.push(...airportReviews);
+posts.push(...contentExpansion);
 posts.sort((a, b) => b.date.localeCompare(a.date));
 
 export const categoryPath: Record<Post['category'], string> = {
