@@ -22,6 +22,7 @@ npm run build
 - GitHub Pages：仓库已包含 `.github/workflows/deploy.yml`，在仓库 Settings → Pages 中选择 GitHub Actions 即可。
 - Cloudflare Pages：构建命令填写 `npm run build`，输出目录填写 `dist`。
 - 自定义域名：`public/CNAME` 当前配置为 `jichangvip.xyz`。
+- IndexNow：GitHub Pages 部署成功后，工作流会读取线上 sitemap 并自动提交全部公开页面；也可手动运行 `npm run indexnow`。
 
 ## 内容说明
 
